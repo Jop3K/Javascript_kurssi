@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+
+<body>
+
+<h1>The Lotto Machine</h1>
+
+<p>Paina "Arvo numerot" niin saat lottonumerot arvottuna 1-40 väliltä</p>
+
+
+<input type="button" value="Arvo numero" onclick="generateLotto()">
+
+
+<div class="result" id="result">
+    <p class="lottoNumbers"></p>
+    <p class="steps"></p>
+    <p id="stepLotto"></p>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+
+    let a = [], ranList = [];
+    let step = 1;
+
+    const lottoNumbers = document.querySelector('.lottoNumbers');
+    const steps = document.querySelector('.steps');
+
+    function intRange(low, high){  // palautetaan lista jossa on kaikki numerot "low" ja "high" välillä
+
+        for(let i = low; i<high; i++){
+
+            a.push(i);
+
+        }
+
+    }
+
+function valueIsIn(ranList, n) {
+    if(ranList.includes(n)){
+        console.log('true');
+        return true;
+    } else {
+        console.log('false');
+        return false;
+    }
+}
+
+
+function pickn(){
+
+    let count = 1;
+
+
+
+    for(let i=0; i<count; i++){
+
+        let n = a[Math.floor(Math.random()*a.length)];
+
+    if(!valueIsIn(ranList, n)) {
+        ranList.push(n);
+    } else {
+        count++;
+    }
+    }
+
+
+    return ranList;
+}
+
+
+function generateLotto(){
+
+    intRange(1,40); // luodaan lista jossa on numerot väliltä 1-40
+
+
+        if(step === 1){
+            pickn();
+            //let para = document.createElement("p");
+            let para = document.getElementById("stepLotto");
+            let node = document.createTextNode("Step 1: " + ranList[0]);
+            para.appendChild(node);
+            para.appendChild(document.createElement("br"));
+
+            /*
+            let div = document.getElementById("result");
+            div.appendChild(para);
+            */
+
+        }
+
+    if(step === 2){
+        pickn();
+        let para = document.getElementById("stepLotto");
+        let node = document.createTextNode(" Step 2: " + ranList[1]);
+        para.appendChild(node);
+        para.appendChild(document.createElement("br"));
+
+    }
+    if(step === 3){
+        pickn();
+        let para = document.getElementById("stepLotto");
+
+        let node = document.createTextNode(" Step 3: " + ranList[2]);
+        para.appendChild(node);
+        para.appendChild(document.createElement("br"));
+
+    }
+    if(step === 4){
+        pickn();
+        let para = document.getElementById("stepLotto");
+
+        let node = document.createTextNode(" Step 4: " + ranList[3]);
+        para.appendChild(node);
+        para.appendChild(document.createElement("br"));
+
+    }
+    if(step === 5){
+        pickn();
+        let para = document.getElementById("stepLotto");
+
+        let node = document.createTextNode(" Step 5: " + ranList[4]);
+        para.appendChild(node);
+        para.appendChild(document.createElement("br"));
+
+    }
+    if(step === 6){
+        pickn();
+
+        let para = document.getElementById("stepLotto");
+        let node = document.createTextNode(" Step 6: " + ranList[5]);
+        para.appendChild(node);
+        para.appendChild(document.createElement("br"));
+
+    }
+    if(step === 7){
+        pickn();
+
+        let para = document.getElementById("stepLotto");
+        let node = document.createTextNode(" Step 7: " + ranList[6]);
+        para.appendChild(node);
+
+
+
+        ranList.sort(function(a, b){return a-b});
+        lottoNumbers.textContent = 'Your LOTTO numbers are: ' + ranList;
+    }
+    if(step === 8){  // reset
+        let para = document.getElementById("stepLotto");
+        a = [];
+        ranList =[];
+        step = 0;
+        lottoNumbers.textContent = null;
+        para.textContent = null;
+
+
+
+    }
+
+
+
+   steps.textContent = 'Step counter: ' + step;
+
+
+
+
+
+    step++;
+
+
+
+}
+
+</script>
+</body>
+</html>

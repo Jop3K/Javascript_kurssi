@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Students</title>
+</head>
+<body>
+
+<h1>Students tehtävä</h1>
+
+
+<script>
+/*
+    18. Create a class MetropoliaStudent that behaves like Student in the example, but additionally
+    participates in Metka activities and gets 1 credit with grade 5 and course name ‘Metka’ after 4 activities. See
+    classes.js example code in OMA for Human, Student etc. classes
+*/
+
+
+class Human {
+    constructor(name, born) {
+        this._name = name;
+        this._born = born;
+    }
+
+    age() {
+        return Date().getYear - this._born;
+    }
+
+    getName() {
+        return this._name;
+    }
+
+    live() {
+        return 'breathe, breathe, breathe';
+    }
+}
+
+class CourseRecord {
+    constructor(name, credits, grade) {
+        this._name = name;
+        if (credits > 15) {
+            this._credits = undefined;
+        } else {
+            this._credits = credits;
+        }
+        if (grade < 0 || grade > 5) {
+            this._grade = undefined;
+        } else {
+            this._grade = grade;
+        }
+    }
+}
+
+class MetropoliaStudent extends Human {
+    constructor(studentId, name, born) {
+        super(name, born);
+        this._studentId = studentId;
+        this._coursesDone = [];
+        this.metkaActivity = 0;
+    }
+
+    doMetkaActivity(){
+
+            this.metkaActivity = this.metkaActivity + 1;
+            console.log(this.getName() + ", Your activity count: " + this.metkaActivity);
+
+        if(this.metkaActivity == 4) {
+            this.courseCompleted(c2);
+            console.log("You gained 1 credit for your Metka activities!");
+        }
+    }
+
+    courseDone(name) {
+        for (let i = 0; i < this._coursesDone.length; i++) {
+            if (this._coursesDone[ i ]._name === name) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    courseDone1(name) {
+        return this._coursesDone.filter((e) => e._name === name).length === 1;
+    }
+
+    courseCompleted(courseRecord) {
+        if (!this.courseDone(courseRecord._name)) {
+            this._coursesDone.push(courseRecord);
+        }
+    }
+
+    totalCredits() {
+        let sum = 0;
+        for (let i = 0; i < this._coursesDone.length; i++) {
+            sum += this._coursesDone[ i ]._credits;
+        }
+        return sum;
+    }
+
+    totalCredits1() {
+        return this._coursesDone.reduce((acc, e) => acc + e._credits, 0);
+    }
+
+    live() {
+        return `${super.live()}, study, study, study`;
+    }
+}
+
+const s1 = new MetropoliaStudent(999, 'Joni', 1996);
+const s2 = new MetropoliaStudent(123, 'Joachim', 1997);
+
+const c1 = new CourseRecord('TX00CS253003', 15, 5);
+const c2 = new CourseRecord('Metka', 1, 5);
+
+s1.doMetkaActivity();
+s1.doMetkaActivity();
+s1.doMetkaActivity();
+s1.doMetkaActivity();
+s1.courseCompleted(c1);
+
+s2.doMetkaActivity();
+s2.doMetkaActivity();
+s2.doMetkaActivity();
+
+
+
+console.log(s1);
+console.log(s2);
+
+
+</script>
+</body>
+</html>

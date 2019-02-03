@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>The AverageNumber Machine</h1>
+
+<p>Paina "Random list" niin saat listan jossa on satunnaisia numeroita ja lopuksi kerrotaan listan arvojen keskiarvo </p>
+
+
+<input type="button" value="Random list" onclick="randomArray()">
+
+
+<div class="result">
+    <p class="randomList"></p>
+    <p class="average"></p>
+
+<script>
+
+
+    const randomList = document.querySelector('.randomList');
+    const average = document.querySelector('.average');
+
+//let from = 1, to = 9;
+let a = [];
+
+function rndIntFromTo(from, to){
+
+    return Math.floor(Math.random() * to) + from;
+
+}
+
+function randomArray(){
+
+    let sum = 0;
+
+    for(let i=0; i<10; i++){
+
+        a.push(rndIntFromTo(1,9));
+
+    }
+
+    //let sum = a.reduce((previous, current) => current += previous);
+
+    for(let i = 0; i < a.length; i++){
+         sum += parseInt(a[i],10);
+    }
+
+    let avg = sum / a.length;
+
+    randomList.textContent = 'Random list: ' + a;
+    average.textContent = 'Average num: ' + avg;
+
+    a = [];
+    avg = null;
+
+}
+
+
+</script>
+</body>
+</html>

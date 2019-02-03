@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>The MODE Machine</h1>
+
+<p>Paina "Random list" niin saat listan jossa on satunnaisia numeroita ja lopuksi kerrotaan listan moodi </p>
+
+
+<input type="button" value="Random list" onclick="drawNumbers(1, 40, 20)">
+
+
+<div class="result">
+    <p class="randomList"></p>
+    <p class="mode"></p>
+
+ <script>
+     /* Write a function that returns the mode value of its argument array that contains integer values in
+     range 1..40. If the array is assumed to be in sorted order, can the mode calculation be done more
+     easily (with lesser steps / memory requirements)? How? (Give an implementation). */
+
+     // "mode" means that if you have an array 1,1,1,2,3 the mode value is "1"
+
+
+
+
+
+
+
+
+
+
+     let v, a = [];
+     const randomList = document.querySelector('.randomList');
+     const mode = document.querySelector('.mode');
+     function drawNumber(low, high){
+         return  Math.floor(Math.random() * high) + low;
+         // returns a random number from the interval low to high
+     }
+
+    /*
+     function valueIsIn(a, v) {
+         if(a.includes(v)){
+             console.log('true');
+             return true;
+         } else {
+             console.log('false');
+             return false;
+         }
+     }
+     */
+     function drawNumbers(low, high, count){
+         a = [];
+         for(let i = 0; i < count; i++) {
+             v = drawNumber(low, high);
+
+                 a.push(v);
+
+         }
+         a.sort(function(a, b){return a-b});
+         //let mode = modeFromArray(a);
+         randomList.textContent = 'Numerot: ' + a ;
+         mode.textContent =  'Mode: ' + modeFromArray(a);
+     }
+
+     function modeFromArray(a){
+
+        if(a.length == 0) {
+            return null;
+         }
+         let modeMap = {};
+         let maxEl = a[0], maxCount = 1;
+         for(let i = 0; i < a.length; i++)
+         {
+             let el = a[i];
+             if(modeMap[el] == null)
+                 modeMap[el] = 1;
+             else
+                 modeMap[el]++;
+             if(modeMap[el] > maxCount)
+             {
+                 maxEl = el;
+                 maxCount = modeMap[el];
+             }
+         }
+         return maxEl;
+
+     }
+
+
+ </script>
+</body>
+</html>

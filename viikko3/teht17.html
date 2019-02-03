@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marker the Drawer</title>
+</head>
+<body>
+
+<h1>Marker tehtävä</h1>
+
+
+<script>
+/*
+17. Create a class Marker that is an abstraction of marker object. Marker can be manipulated with methods
+putCapOn(), takeCapOff(), and draw(). The draw() method works only if 1) the marker cap is open,
+and 2) marker has at least 1 unit of ink. draw() returns true if drawing was successful (and 1 unit of ink was
+consumed), false otherwise. Write code or UI to test that a marker object behaves appropriately. Hint: you
+might want to use variables to 1) store the state of the cap (on or off), and 2) the amount of ink in the
+marker.
+ */
+
+class Marker{
+    constructor(_ink){
+        this.ink = _ink;
+        this.cap = 1; // the cap is on
+
+    }
+
+    putCapOn(){ // puts the cap on
+    return this.cap = 1;
+    }
+
+    takeCapOff(){
+    return this.cap = 0;
+    }
+
+    draw(){
+    if(this.ink == 0){
+        console.log("You are out of ink!")
+    } else {
+        if (this.cap == 0) {
+            this.ink = this.ink - 1;
+            console.log("Draw, draw, draw! you have " + this.ink + " ink left");
+        } else if (this.cap == 1) {
+            console.log("Ouch! Take the cap off before drawing!");
+        }
+    }
+    }
+
+}
+
+class Marker2{
+    constructor(_ink){
+        this.ink = _ink;
+        this.cap = true; // the cap is on
+
+    }
+
+    putCapOn(){ // puts the cap on
+        return this.cap = true;
+    }
+
+    takeCapOff(){
+        return this.cap = false;
+    }
+
+    draw(){
+        if(this.ink == 0){
+            console.log("You are out of ink!")
+        } else {
+            if (this.cap == false) {
+                this.ink = this.ink - 1;
+                console.log("Draw, draw, draw! you have " + this.ink + " ink left");
+                return true;
+            } else if (this.cap == true) {
+                console.log("Ouch! Take the cap off before drawing!");
+                return false;
+            }
+        }
+    }
+
+}
+
+
+let myMarker = new Marker(3);
+let myMarker2 = new Marker2(4);
+
+console.log("Test myMarker 1!");
+
+myMarker.draw();
+myMarker.takeCapOff();
+myMarker.draw(); //1
+myMarker.draw(); //2
+myMarker.putCapOn();
+myMarker.draw();
+myMarker.takeCapOff();
+myMarker.draw(); //3
+myMarker.draw(); //out of ink
+
+    console.log("Test myMarker 2! /w boolean");
+
+myMarker2.draw();
+myMarker2.takeCapOff();
+myMarker2.draw(); // true
+myMarker2.draw(); // true
+myMarker2.draw(); // true
+myMarker2.putCapOn();
+myMarker2.draw();
+myMarker2.takeCapOff();
+myMarker2.draw(); //true
+myMarker2.draw(); //out of ink , false
+
+</script>
+</body>
+</html>

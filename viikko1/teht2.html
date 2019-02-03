@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GCD Simplify</title>
+</head>
+<body>
+<script>
+
+
+
+    function gcd() {
+
+        let a, b;
+
+        a = Number(document.getElementById("val1").value);
+
+        b = Number(document.getElementById("val2").value);
+
+        function calcgcd(a = Number(document.getElementById("val1").value), b = Number(document.getElementById("val2").value)){
+            if(b == 0) {
+                return a;
+            } else{
+                let remainder = a%b;
+                return calcgcd(b, remainder);
+            }
+        }
+
+
+
+        let aresult = a / calcgcd();
+
+       let bresult = b / calcgcd();
+
+        //document.getElementById("result").innerText = calcgcd();
+
+
+         document.getElementById("result").innerText = aresult + " / " + bresult;
+    }
+
+</script>
+
+
+Value a:<br>
+<input type="text" id="val1"> <br>
+Value b:<br>
+<input type="text" id="val2"> <br> <br>
+
+
+<input type="button" value="Calculate GCD" onclick="gcd()">
+
+<br> <br>
+
+GCD simplify result:
+<label id="result"> </label>
+
+</body>
+</html>

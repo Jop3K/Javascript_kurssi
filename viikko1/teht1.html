@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BMI Calculator</title>
+</head>
+<body>
+    <script>
+
+
+    function getResult() {
+        let weight, height, bmi;
+
+
+
+        height = Number(document.getElementById("height").value);
+
+        weight = Number(document.getElementById("weight").value);
+
+       // bmi = weight / (height * height);
+         bmi = weight / Math.pow(height, 2);
+
+         bmi = bmi * 10000;
+
+
+
+        document.getElementById("result").innerText = bmi;
+        if(document.getElementById("result").innerText == "NaN"){
+            document.getElementById("result").innerText = "undefined";
+        }
+
+    }
+
+
+    </script>
+
+    Height(cm):<br>
+<input type="text" id="height"> <br>
+    Weight(kg):<br>
+<input type="text" id="weight"> <br> <br>
+
+
+<input type="button" value="Calculate BMI" onclick="getResult()">
+
+<br> <br>
+
+    Your BMI:
+<label id="result"> </label>
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        html {
+            font-family: sans-serif;
+        }
+        body {
+            width: 50%;
+            max-width: 800px;
+            min-width: 480px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>The pickN Machine</h1>
+
+<p>Paina "Random list" niin saat listan jossa on satunnaisia numeroita ja lopuksi listasta valitaan satunnaisia numeroita jotta saadaan uusi lista </p>
+
+
+<input type="button" value="Random list" onclick="randomArray()">
+
+
+<div class="result">
+    <p class="randomList"></p>
+    <p class="pickRandom"></p>
+
+    <script>
+
+
+        const randomList = document.querySelector('.randomList');
+        const pickRandom = document.querySelector('.pickRandom');
+
+        //let from = 1, to = 9;
+        let a = [], ranList = [];
+
+        function rndIntFromTo(from, to){
+
+            return Math.floor(Math.random() * to) + from;
+
+        }
+
+        function pickn(){
+
+            //let n = a[Math.floor(Math.random()*a.length)];
+
+            let n = 5;
+
+            for(let i=0; i<n; i++){
+                ranList.push(a[Math.floor(Math.random()*a.length)]);
+            }
+
+            return ranList;
+        }
+
+        function randomArray(){
+
+
+
+            for(let i=0; i<10; i++){
+
+                a.push(rndIntFromTo(1,9));
+
+            }
+
+
+
+
+
+
+
+            randomList.textContent = 'Random list: ' + a;
+            pickRandom.textContent = 'Pick random numbers from Random List: ' + pickn();
+
+
+            a = [];
+            ranList =[];
+
+
+        }
+
+
+
+
+    </script>
+</body>
+</html>
