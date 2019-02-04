@@ -2,9 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>The Mocca Master</title>
 </head>
 <body>
 
+<h1>CoffeeMaker tehtävä(js console)</h1>
+
+<script>
+/*
+19. (triple points) Create a CoffeeMaker class that allows user to see if the appliance is switched on by calling
+isOn(), pressOnOffSwitch(), fillBeansContainer(), fillWaterContainer(), and brew()
+coffee. Brewing can only be successfully done if the appliance is on, and has enough beans as well as
+enough water. Divide your CoffeeMaker implementation to multiple classes. For example, you might
+consider implementing WaterContainer and BeansContainer separately (and they might have some
+common Container functionality).
+ */
+
+
+
+
+class Container{
+    constructor(){
+
+        this.waterContainer = 0; //empty container
+        this.beansContainer = 0; //empty container
+    }
+
+
+    containerStatus(){
+        return console.log('Watercontainer: ' + this.waterContainer + " Beanscontainer: " + this.beansContainer);
+    }
+
+    fillBeansContainer(){
+        this.beansContainer = this.beansContainer + 2; // beansContainer filled
+        console.log("Bean container is now filled");
+        this.containerStatus();
+    }
+
+    fillWaterContainer(){
+        this.waterContainer = this.waterContainer + 3; // waterContainer filled
+        console.log("Water container is now filled");
+        this.containerStatus();
+    }
+
+
+}
+
+class CoffeeMaker extends Container{
+    constructor(){
+
+        super(); // container
+
+        this.switch = 0; //coffee maker off
+
+    }
+
+    isOn(){
+        if(this.switch == 1){
+            return true;
+        } else {
+            console.log("The coffee maker is off!");
+        }
+    }
+
+    pressOnOffSwitch(){
+        if(this.switch == 1){
+            this.switch = 0; // turns coffee maker off
+            console.log("The coffee maker is now turned off!");
+        } else if (this.switch == 0){
+            this.switch = 1; // turns coffee maker on
+            console.log("The coffee maker is now turned on!");
+        }
+    }
+
+
+    brew(){
+        if(this.waterContainer == 0 || this.beansContainer == 0){ // check if either container is empty before progressing
+
+
+            console.log("Fill the empty container before brewing!");
+            this.containerStatus();
+
+
+        } else {
+            if (this.switch == 1) { // checks if coffee maker is on before brewing
+
+                this.waterContainer = this.waterContainer - 1;
+                this.beansContainer = this.beansContainer - 1;
+
+                console.log("Brewing some delicious coffee!!!");
+            } else if (this.switch == 0) {
+                console.log("You can't brew coffee if the coffee maker is not turned on!");
+            }
+        }
+    }
+
+
+}
+
+
+let MoccaMaster = new CoffeeMaker();
+
+MoccaMaster.fillBeansContainer();
+MoccaMaster.fillWaterContainer();
+MoccaMaster.isOn();
+MoccaMaster.pressOnOffSwitch(); // turn MM on
+MoccaMaster.brew();
+MoccaMaster.brew();
+MoccaMaster.brew(); // beans empty
+MoccaMaster.fillBeansContainer();
+MoccaMaster.brew();
+MoccaMaster.brew(); // water empty
+MoccaMaster.pressOnOffSwitch(); // turn MM off
+
+
+</script>
 </body>
 </html>
