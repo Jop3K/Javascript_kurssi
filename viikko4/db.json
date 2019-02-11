@@ -1,0 +1,24 @@
+{
+  "links": [
+
+  {
+    "id": 1,
+    "url": "https://www.gigantti.fi/",
+    "description": "Parasta elektroniikkaa"
+  },
+    {
+     "id": 2,
+      "url": "https://www.verkkokauppa.com",
+      "description": "Todennäköisesti aina halvempi"
+
+    },
+    {
+      "id": 3,
+      "url": "https://www.power.fi",
+      "description": "Suuri valikoima, halvat hinnat"
+
+    }
+
+
+]
+}
